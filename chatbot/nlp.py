@@ -1,12 +1,16 @@
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
-tokenizer = AutoTokenizer.from_pretrained("microsoft/GODEL-v1_1-base-seq2seq")
-model = AutoModelForSeq2SeqLM.from_pretrained("microsoft/GODEL-v1_1-base-seq2seq")
+# Load the tokenizer and model
+tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
+model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-small")
+
+chat_history_ids = None  # To store chat context
 
 def get_bot_response(user_input):
-    dialog = f"[CONTEXT] {user_input} [QUESTION] What would be a helpful response?"
-    inputs = tokenizer(dialog, return_tensors="pt")
-    generated_ids = model.generate(**inputs, max_length=100)
-    response = tokenizer.decode(generated_ids[0], skip_special_tokens=True)
+    global chat_history_ids
+    input_ids = tokenizer.encode(user_input + tokenizer.eos_token, return_tensors='pt')
+    bot_input_ids = torch.cat([chat_history_ids, input_ids], dim=-1) if chat_history_ids is not None else input_ids
+    chat_history_ids = model.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
+    response = tokenizer.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)
     return response
