@@ -1,82 +1,72 @@
 body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f3f5f7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background: #f4f6f9;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-.chat-container {
-    width: 100%;
-    max-width: 450px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+.container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.chat-box {
-    height: 400px;
-    overflow-y: auto;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #fafafa;
-    margin-bottom: 15px;
+#chat-box {
+  height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 10px;
+  background: #fafafa;
 }
 
-.message {
-    margin: 10px 0;
-    padding: 10px 15px;
-    border-radius: 15px;
-    max-width: 80%;
-    clear: both;
-}
-
-.user {
-    background-color: #dcf8c6;
-    align-self: flex-end;
-    float: right;
-    text-align: right;
-}
-
-.bot {
-    background-color: #e2e2e2;
-    float: left;
-    text-align: left;
-}
-
-form {
-    display: flex;
-    gap: 10px;
+.input-area {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
 }
 
 input[type="text"] {
-    flex-grow: 1;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    font-size: 14px;
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 button {
-    padding: 10px 15px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 14px;
-    cursor: pointer;
+  padding: 10px 15px;
+  border: none;
+  background-color: #4a90e2;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+  background-color: #357ABD;
+}
+
+.user-message, .bot-message {
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.user-message {
+  background-color: #d1ecf1;
+  align-self: flex-end;
+}
+
+.bot-message {
+  background-color: #e2e3e5;
 }
